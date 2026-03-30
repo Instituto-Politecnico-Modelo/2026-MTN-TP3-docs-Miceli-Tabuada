@@ -5,7 +5,6 @@ Este diagrama representa la estructura lógica del sistema, incluyendo las entid
 ```mermaid
 classDiagram
     class Usuario {
-        -Long id
         -String nombre
         -String email
         -String password
@@ -15,7 +14,6 @@ classDiagram
     }
 
     class Turno {
-        -Long id
         -LocalDate fecha
         -LocalTime hora
         -Integer cancha
@@ -26,7 +24,6 @@ classDiagram
     }
 
     class Producto {
-        -Long id
         -String nombre
         -Double precio
         -Integer stock
@@ -34,7 +31,6 @@ classDiagram
     }
 
     class Compra {
-        -Long id
         -LocalDateTime fecha
         -Double total
         +generarOrden()
