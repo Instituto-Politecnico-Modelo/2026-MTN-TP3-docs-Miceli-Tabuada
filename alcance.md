@@ -37,16 +37,7 @@ El sistema incluirá los siguientes módulos:
 * Alta, modificación y cancelación de reservas.
 * Integración con servicios de clima para informar condiciones al momento de la reserva.
 * Notificaciones de confirmación al usuario.
-
-### 🛒 Tienda Online (E-Commerce)
-* Catálogo de indumentaria y accesorios deportivos con imágenes y descripción.
-* Gestión de carrito de compras.
-* Procesamiento y seguimiento de órdenes de compra.
-* Administración de stock desde el panel de administración.
-
-### 📹 Multimedia y Consultas
-* Visualización de videos grabados de los partidos asociados a una reserva.
-* Sistema de preguntas y respuestas para interacción entre clientes y el complejo.
+* Gestión de pagos reales con API (Ej: Mercado Pago).
 
 ---
 
@@ -54,10 +45,11 @@ El sistema incluirá los siguientes módulos:
 
 Los siguientes aspectos quedan **fuera del alcance** de esta etapa:
 
-* No se contempla la gestión de pagos reales (se utilizará simulación).
 * No incluye la grabación física de videos, solo su administración y reproducción en la plataforma.
 * El sistema no dará soporte para la organización de torneos o ligas en esta etapa.
 * No se implementará una app móvil nativa; el sistema será web responsivo.
+* No se contempla la subida de multimedia a la página.
+* No se tendrá en cuenta la implementación de la tienda online de camisetas.
 
 ---
 
