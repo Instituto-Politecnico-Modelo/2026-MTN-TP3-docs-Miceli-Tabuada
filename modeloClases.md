@@ -5,40 +5,48 @@ Este diagrama representa la estructura lógica del sistema, incluyendo las entid
 ```mermaid
 classDiagram
     class Usuario {
+        -Int dni
         -String nombre
+        -String apellido
         -String email
         -String password
+        -String telefono
         -Rol rol
         +registrar()
         +autenticar()
+        +verGrillaDisponibilidad()
+    }
+
+    class Cancha {
+        -String nombre
+        -String tipo
+        -String descripcion
+        -Boolean activa
+        -Turnos
+        +getTurnosDisponibles(fecha: LocalDate)
     }
 
     class Turno {
+        -DiaSemana diaSemana
+        -LocalTime horaInicio
+        -LocalTime horaFin
+        -Boolean disponible
+        -Long canchaId
+        +estaDisponible()
+    }
+
+    class Reserva {
         -LocalDate fecha
-        -LocalTime hora
-        -Integer cancha
-        -String estado
-        -String datosClima
-        +reservar()
+        -EstadoReserva estado
+        -Long usuarioId
+        -Long turnoId
+        +confirmar()
         +cancelar()
     }
 
-    class Producto {
-        -String nombre
-        -Double precio
-        -Integer stock
-        +actualizarStock()
-    }
-
-    class Compra {
-        -LocalDateTime fecha
-        -Double total
-        +generarOrden()
-    }
-
-    Usuario "1" -- "*" Turno : reserva
-    Usuario "1" -- "*" Compra : realiza
-    Compra "*" -- "*" Producto : contiene
+    Cancha "1" *-- "*" Turno : tiene
+    Usuario "1" --> "*" Reserva : realiza
+    Turno "1" --> "*" Reserva : es reservado en
 ```
 
 ---
