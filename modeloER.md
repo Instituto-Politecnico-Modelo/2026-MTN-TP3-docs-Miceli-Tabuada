@@ -1,7 +1,5 @@
 # 📊 Modelo Entidad-Relación - Futbol5Ya
 
-Este diagrama representa el modelo de datos relacional del sistema de gestión de turnos para canchas de fútbol.
-
 ```mermaid
 erDiagram
     USUARIO {

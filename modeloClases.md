@@ -30,23 +30,34 @@ classDiagram
         -DiaSemana diaSemana
         -LocalTime horaInicio
         -LocalTime horaFin
-        -Boolean disponible
-        -Long canchaId
         +estaDisponible()
     }
 
     class Reserva {
         -LocalDate fecha
         -EstadoReserva estado
-        -Long usuarioId
-        -Long turnoId
         +confirmar()
         +cancelar()
+    }
+
+    class Rol {
+        <<enumeration>>
+        ADMINISTRADOR
+        CLIENTE
+    }
+
+    class EstadoReserva {
+        <<enumeration>>
+        CONFIRMADA
+        PENDIENTE
+        CANCELADA
     }
 
     Cancha "1" *-- "*" Turno : tiene
     Usuario "1" --> "*" Reserva : realiza
     Turno "1" --> "*" Reserva : es reservado en
+    Usuario --> Rol : usa
+    Reserva --> EstadoReserva : usa
 ```
 
 ---
