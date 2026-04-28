@@ -1,7 +1,9 @@
 package com.example.tp3MiceliTabuada.controllers;
 
+import com.example.tp3MiceliTabuada.dto.UsuarioRequestDTO;
 import com.example.tp3MiceliTabuada.models.Usuario;
 import com.example.tp3MiceliTabuada.services.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,10 +34,19 @@ public class UsuarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    //post /api/usuarios
+    // POST /api/usuarios
     @PostMapping
-    public ResponseEntity<?> crear(@RequestBody Usuario usuario) {
+    public ResponseEntity<?> crear(@Valid @RequestBody UsuarioRequestDTO dto) {
         try {
+            Usuario usuario = new Usuario();
+            usuario.setDni(dto.getDni());
+            usuario.setNombre(dto.getNombre());
+            usuario.setApellido(dto.getApellido());
+            usuario.setEmail(dto.getEmail());
+            usuario.setPassword(dto.getPassword());
+            usuario.setTelefono(dto.getTelefono());
+            usuario.setRol(dto.getRol());
+
             Usuario creado = usuarioService.crear(usuario);
             return ResponseEntity.status(HttpStatus.CREATED).body(creado);
         } catch (IllegalArgumentException e) {
