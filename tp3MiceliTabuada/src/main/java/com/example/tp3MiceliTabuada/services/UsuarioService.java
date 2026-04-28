@@ -4,7 +4,6 @@ import com.example.tp3MiceliTabuada.models.Usuario;
 import com.example.tp3MiceliTabuada.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,14 +15,7 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public List<Usuario> obtenerTodos() {
-        return usuarioRepository.findAll();
-    }
-
-    public Optional<Usuario> obtenerPorId(Long id) {
-        return usuarioRepository.findById(id);
-    }
-
+    // Alta
     public Usuario crear(Usuario usuario) {
         if (usuarioRepository.existsByEmail(usuario.getEmail())) {
             throw new IllegalArgumentException("Ya existe un usuario con ese email");
@@ -34,6 +26,7 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    // Modificacion
     public Optional<Usuario> modificar(Long id, Usuario datos) {
         return usuarioRepository.findById(id).map(u -> {
             u.setNombre(datos.getNombre());
@@ -46,6 +39,7 @@ public class UsuarioService {
         });
     }
 
+    // Baja
     public boolean eliminar(Long id) {
         if (usuarioRepository.existsById(id)) {
             usuarioRepository.deleteById(id);

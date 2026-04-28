@@ -15,7 +15,8 @@ public class UsuarioController {
     public UsuarioController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
     }
-    //post http://localhost:8080/api/usuarios
+
+    // POST http://localhost:8080/api/usuarios
     @PostMapping
     public ResponseEntity<?> crear(@RequestBody Usuario usuario) {
         try {
@@ -24,6 +25,23 @@ public class UsuarioController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    // PUT http://localhost:8080/api/usuarios/{id}
+    @PutMapping("/{id}")
+    public ResponseEntity<?> modificar(@PathVariable Long id, @RequestBody Usuario datos) {
+        return usuarioService.modificar(id, datos)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    // DELETE http://localhost:8080/api/usuarios/{id}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
+        if (usuarioService.eliminar(id)) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }
 
