@@ -1,6 +1,6 @@
 package com.example.tp3MiceliTabuada;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test; // usamos junit!!
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
