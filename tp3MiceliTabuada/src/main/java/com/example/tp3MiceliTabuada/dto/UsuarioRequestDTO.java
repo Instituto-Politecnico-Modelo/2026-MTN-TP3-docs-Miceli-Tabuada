@@ -2,6 +2,9 @@ package com.example.tp3MiceliTabuada.dto;
 
 import com.example.tp3MiceliTabuada.models.Rol;
 import jakarta.validation.constraints.*;
+import lombok.Data;
+
+@Data
 
 public class UsuarioRequestDTO {
 
