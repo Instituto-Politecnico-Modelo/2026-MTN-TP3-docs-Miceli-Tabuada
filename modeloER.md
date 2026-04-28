@@ -4,9 +4,10 @@
 erDiagram
     USUARIO {
         BIGINT id PK
+        INT dni UK
         VARCHAR nombre
         VARCHAR apellido
-        VARCHAR email
+        VARCHAR email UK
         VARCHAR password
         VARCHAR telefono
         ENUM rol
