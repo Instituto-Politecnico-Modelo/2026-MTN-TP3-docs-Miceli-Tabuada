@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
@@ -20,6 +21,9 @@ class UsuarioServiceTest {
 
     @Mock
     private UsuarioRepository usuarioRepository;
+
+    @Mock
+    private PasswordEncoder passwordEncoder;
 
     @InjectMocks
     private UsuarioService usuarioService;
@@ -44,6 +48,7 @@ class UsuarioServiceTest {
     void crear_debeGuardarUsuario_cuandoDatosValidos() {
         when(usuarioRepository.existsByEmail(usuario.getEmail())).thenReturn(false);
         when(usuarioRepository.existsByDni(usuario.getDni())).thenReturn(false);
+        when(passwordEncoder.encode(anyString())).thenReturn("hashedPassword");
         when(usuarioRepository.save(usuario)).thenReturn(usuario);
 
         Usuario resultado = usuarioService.crear(usuario);
@@ -82,6 +87,7 @@ class UsuarioServiceTest {
         datos.setRol(Rol.ADMIN);
 
         when(usuarioRepository.findById(1L)).thenReturn(Optional.of(usuario));
+        when(passwordEncoder.encode(anyString())).thenReturn("hashedNuevaPass");
         when(usuarioRepository.save(any(Usuario.class))).thenReturn(usuario);
 
         Optional<Usuario> resultado = usuarioService.modificar(1L, datos);

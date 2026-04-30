@@ -2,6 +2,7 @@ package com.example.tp3MiceliTabuada.services;
 
 import com.example.tp3MiceliTabuada.models.Usuario;
 import com.example.tp3MiceliTabuada.repositories.UsuarioRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -10,9 +11,11 @@ import java.util.Optional;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UsuarioService(UsuarioRepository usuarioRepository) {
+    public UsuarioService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // Alta
@@ -23,6 +26,8 @@ public class UsuarioService {
         if (usuarioRepository.existsByDni(usuario.getDni())) {
             throw new IllegalArgumentException("Ya existe un usuario con ese DNI");
         }
+        // Hashear la contraseña antes de guardar
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         return usuarioRepository.save(usuario);
     }
 
@@ -32,7 +37,8 @@ public class UsuarioService {
             u.setNombre(datos.getNombre());
             u.setApellido(datos.getApellido());
             u.setEmail(datos.getEmail());
-            u.setPassword(datos.getPassword());
+            // Hashear la nueva contraseña antes de guardar
+            u.setPassword(passwordEncoder.encode(datos.getPassword()));
             u.setTelefono(datos.getTelefono());
             u.setRol(datos.getRol());
             return usuarioRepository.save(u);
