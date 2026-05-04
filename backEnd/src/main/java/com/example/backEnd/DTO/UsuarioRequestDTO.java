@@ -1,51 +1,17 @@
-package com.example.backEnd.Entidad;
+package com.example.backEnd.DTO;
 
-import jakarta.persistence.*;
+import com.example.backEnd.Entidad.Rol;
 
-@Entity
-@Table(name = "usuarios")
-public class Usuario {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false, unique = true)
+public class UsuarioRequestDTO {
     private Integer dni;
-
-    @Column(nullable = false)
     private String nombre;
-
-    @Column(nullable = false)
     private String apellido;
-
-    @Column(nullable = false, unique = true)
     private String email;
-
-    @Column(nullable = false)
     private String password;
-
     private String telefono;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private Rol rol;
 
-    public Usuario() {
-    }
-
-    public Usuario(Integer dni, String nombre, String apellido, String email, String password, String telefono, Rol rol) {
-        this.dni = dni;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.password = password;
-        this.telefono = telefono;
-        this.rol = rol;
-    }
-
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public UsuarioRequestDTO() {}
 
     public Integer getDni() { return dni; }
     public void setDni(Integer dni) { this.dni = dni; }
