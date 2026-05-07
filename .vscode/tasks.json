@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run Spring Boot",
+			"type": "shell",
+			"command": "cd backEnd && chmod +x mvnw && ./mvnw spring-boot:run",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run Spring Boot",
+			"type": "shell",
+			"command": "cd backEnd && chmod +x mvnw && ./mvnw spring-boot:run",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run Spring Boot",
+			"type": "shell",
+			"command": "cd backEnd && chmod +x mvnw && ./mvnw spring-boot:run",
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}
